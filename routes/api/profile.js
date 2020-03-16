@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 /**
@@ -6,8 +6,7 @@ const router = express.Router();
  * @desc     Test route
  * @access   Public
  *
- * Public routes don't need tokens
  */
-router.get('/', (req, res) => res.send('Profile route'));
+router.get("/", (req, res) => res.send("Profile route"));
 
 module.exports = router;
