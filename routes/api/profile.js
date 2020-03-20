@@ -115,4 +115,52 @@ router.post(
   }
 );
 
+/**
+ * @route    GET api/profile
+ * @desc     Get all profiles
+ * @access   Public
+ *
+ */
+
+router.get("/", async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    res.json(profiles);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// the ':' below is used to indicate a place holder in the path
+
+/**
+ * @route    GET api/profile/user/:user_id
+ * @desc     Get profiles by user ID
+ * @access   Public
+ */
+
+router.get("/user/:user_id", async (req, res) => {
+  try {
+    // the user id comes from the URL, "req.params.user_id" to access it
+    const profile = await Profile.findOne({
+      user: req.params.user_id
+    }).populate("user", ["name", "avatar"]);
+    if (!profile)
+      return res.status(400).json({
+        msg: `Profile not found for this user: ${req.params.user_id}`
+      });
+    res.json(profile);
+  } catch (err) {
+    // This just prevents the error the be "server error" when the user id is valid but not found
+    if (err.kind == "ObjectId") {
+      return res.status(400).json({
+        msg: `Profile not found for this user: ${req.params.user_id}`
+      });
+    }
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 module.exports = router;
