@@ -119,7 +119,6 @@ router.post(
  * @route    GET api/profile
  * @desc     Get all profiles
  * @access   Public
- *
  */
 
 router.get("/", async (req, res) => {
@@ -158,6 +157,29 @@ router.get("/user/:user_id", async (req, res) => {
         msg: `Profile not found for this user: ${req.params.user_id}`
       });
     }
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+/**
+ * @route    DELETE api/profile
+ * @desc     Delete Profile, user & posts
+ * @access   Private
+ */
+
+//private means that there is access to the token, but needs to add the auth
+router.delete("/", auth, async (req, res) => {
+  try {
+    // @todo - remove user's posts
+
+    //remove profile
+    await Profile.findOneAndRemove({ user: req.user.id });
+    //remove user
+    await User.findOneAndRemove({ _id: req.user.id });
+
+    res.json({ msg: "User deleted" });
+  } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
   }
