@@ -16,7 +16,7 @@ const { check, validationResult } = require("express-validator");
 router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.user.id
+      user: req.user.id,
     }).populate("user", ["name", "avatar"]);
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile for this user" });
@@ -41,13 +41,9 @@ router.post(
   [
     auth,
     [
-      check("status", "status is required")
-        .not()
-        .isEmpty(),
-      check("skills", "Skills is required")
-        .not()
-        .isEmpty()
-    ]
+      check("status", "status is required").not().isEmpty(),
+      check("skills", "Skills is required").not().isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -66,7 +62,7 @@ router.post(
       facebook,
       instagram,
       linkedin,
-      twitter
+      twitter,
     } = req.body;
 
     //build profile object
@@ -79,7 +75,7 @@ router.post(
     if (status) profileFields.status = status;
     if (githubusername) profileFields.githubusername = githubusername;
     if (skills) {
-      profileFields.skills = skills.split(",").map(skill => skill.trim());
+      profileFields.skills = skills.split(",").map((skill) => skill.trim());
     }
 
     //build social object
@@ -143,18 +139,18 @@ router.get("/user/:user_id", async (req, res) => {
   try {
     // the user id comes from the URL, "req.params.user_id" to access it
     const profile = await Profile.findOne({
-      user: req.params.user_id
+      user: req.params.user_id,
     }).populate("user", ["name", "avatar"]);
     if (!profile)
       return res.status(400).json({
-        msg: `Profile not found for this user: ${req.params.user_id}`
+        msg: `Profile not found for this user: ${req.params.user_id}`,
       });
     res.json(profile);
   } catch (err) {
     // This just prevents the error the be "server error" when the user id is valid but not found
     if (err.kind == "ObjectId") {
       return res.status(400).json({
-        msg: `Profile not found for this user: ${req.params.user_id}`
+        msg: `Profile not found for this user: ${req.params.user_id}`,
       });
     }
     console.error(err.message);
@@ -196,16 +192,10 @@ router.put(
   [
     auth,
     [
-      check("title", "Title is required")
-        .not()
-        .isEmpty(),
-      check("company", "Company is required")
-        .not()
-        .isEmpty(),
-      check("from", "From date is required")
-        .not()
-        .isEmpty()
-    ]
+      check("title", "Title is required").not().isEmpty(),
+      check("company", "Company is required").not().isEmpty(),
+      check("from", "From date is required").not().isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -220,7 +210,7 @@ router.put(
       from,
       to,
       current,
-      description
+      description,
     } = req.body;
 
     const newExp = {
@@ -230,12 +220,12 @@ router.put(
       from,
       to,
       current,
-      description
+      description,
     };
 
     try {
       const profile = await Profile.findOne({ user: req.user.id });
-      //unshift
+      //unshift adds to the left (beggining) and push to the right (end)
       profile.experience.unshift(newExp);
 
       await profile.save();
@@ -247,5 +237,30 @@ router.put(
     }
   }
 );
+
+/**
+ * @route    DELETE api/profile/experience/:exp_id
+ * @desc     Delete an experience
+ * @access   Private
+ */
+
+router.delete("/experience/:exp_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+    // Get remove index
+    const removeIndex = profile.experience
+      .map((item) => item.id)
+      .indexOf(req.params.exp_id);
+
+    profile.experience.splice(removeIndex, 1);
+
+    await profile.save();
+
+    res.json(profile);
+  } catch (e) {
+    console.error(e.message);
+    res.status(500).send("Server error");
+  }
+});
 
 module.exports = router;
