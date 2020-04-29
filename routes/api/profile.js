@@ -11,7 +11,7 @@ const { check, validationResult } = require("express-validator");
  * @route    GET api/profile/me
  * @desc     Get current users profile
  * @access   Private
- *
+ * *me
  */
 router.get("/me", auth, async (req, res) => {
   try {
@@ -133,6 +133,7 @@ router.get("/", async (req, res) => {
  * @route    GET api/profile/user/:user_id
  * @desc     Get profiles by user ID
  * @access   Public
+ * *user
  */
 
 router.get("/user/:user_id", async (req, res) => {
@@ -185,6 +186,7 @@ router.delete("/", auth, async (req, res) => {
  * @route    PUT api/profile/experience
  * @desc     Add Profile experience
  * @access   Private
+ * * experience
  */
 
 router.put(
@@ -242,6 +244,7 @@ router.put(
  * @route    DELETE api/profile/experience/:exp_id
  * @desc     Delete an experience
  * @access   Private
+ * * experience
  */
 
 router.delete("/experience/:exp_id", auth, async (req, res) => {
@@ -257,8 +260,93 @@ router.delete("/experience/:exp_id", auth, async (req, res) => {
     await profile.save();
 
     res.json(profile);
-  } catch (e) {
-    console.error(e.message);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+/**
+ * @route    PUT api/profile/education
+ * @desc     Add Profile education
+ * @access   Private
+ * * education
+ */
+
+router.put(
+  "/education",
+  [
+    auth,
+    [
+      check("school", "School is required").not().isEmpty(),
+      check("degree", "Degree is required").not().isEmpty(),
+      check("fieldofstudy", "Field of study is required").not().isEmpty(),
+      check("from", "From date is required").not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const {
+      school,
+      degree,
+      fieldofstudy,
+      from,
+      to,
+      current,
+      description,
+    } = req.body;
+
+    const newEdu = {
+      school,
+      degree,
+      fieldofstudy,
+      from,
+      to,
+      current,
+      description,
+    };
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+      //unshift adds to the left (beggining) and push to the right (end)
+      profile.education.unshift(newEdu);
+
+      await profile.save();
+
+      res.json(profile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+/**
+ * @route    DELETE api/profile/education/:edu_id
+ * @desc     Delete an education
+ * @access   Private
+ * * education
+ */
+
+router.delete("/education/:edu_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    const removeIndex = profile.education
+      .map((item) => item.id)
+      .indexOf(req.params.edu_id);
+
+    profile.education.splice(removeIndex, 1);
+
+    await profile.save();
+
+    res.json(profile);
+  } catch (err) {
+    console.error(err.message);
     res.status(500).send("Server error");
   }
 });
