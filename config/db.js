@@ -1,6 +1,6 @@
-const mongoose = require('mongoose'); //used to connect
-const config = require('config');
-const db = config.get('mongoURI');
+const mongoose = require("mongoose"); //used to connect
+const config = require("config"); //lets you define a set of default parameters
+const db = config.get("mongoURI");
 
 const connectDB = async () => {
   try {
@@ -8,11 +8,11 @@ const connectDB = async () => {
     await mongoose.connect(db, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true
+      useCreateIndex: true,
     }); // since it returns a promise it needs an await
-    console.log('MongoDB Connected');
+    console.log("MongoDB Connected");
   } catch (err) {
-    console.error('Failed to connect: ' + err.message);
+    console.error("Failed to connect: " + err.message);
     //exit process with failure
     process.exit(1);
   }
