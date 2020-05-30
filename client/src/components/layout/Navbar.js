@@ -52,6 +52,7 @@ Navbar.propTypes = {
   auth: PropTypes.object.isRequired, //ptor
 };
 
+//? takes the data from the "store state" and select what connect needs then it may be destructured in the component's params
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
