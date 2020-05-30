@@ -5,11 +5,18 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 {
   /* i.fas.fa-sing-out-alt */
+  //the span arround the text is to let just the icon to show in mobile devices
 }
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
+      <li>
+        <Link to='/dashboard'>
+          <i className='fas fa-user'></i>{" "}
+          <span className='hide-sm'>Dashboard</span>
+        </Link>
+      </li>
       <li>
         <a onClick={logout} path='#!'>
           <i className='fas fa-sing-out-alt'></i>{" "}
