@@ -1,8 +1,13 @@
 import axios from "axios";
 /**
+ * @description Function takes a token and add to the header,
+ * if there is no token it will delete from the 'global' headers
  * @param token
- * Function takes a token, if there is one it will be added to the header,
- *  if not it will delete from the 'global' headers
+ *
+ *
+ * @example This must run along with a local storage:
+ *        const { token } = localStorage;
+ *        if (token) setAuthToken(token);
  */
 
 const setAuthToken = (token) => {

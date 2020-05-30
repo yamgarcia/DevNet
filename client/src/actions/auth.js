@@ -13,7 +13,8 @@ import {
 import setAuthToken from "../utils/setAuthToken";
 
 /**
- * @description load user
+ * @description loads user by taking the token from the local storage then takes
+ *  a response from a get request and dispatching it
  */
 export const loadUser = () => async (dispatch) => {
   const { token } = localStorage;
@@ -35,7 +36,9 @@ export const loadUser = () => async (dispatch) => {
 
 /**
  * @description register user
- * @param param
+ * @param name compose the body
+ * @param email compose the body
+ * @param password compose the body
  */
 export const register = ({ name, email, password }) => async (dispatch) => {
   const config = {
@@ -68,7 +71,8 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
 /**
  * @description Login user
- * @param param
+ * @param email  compose the body
+ * @param password  compose the body
  */
 export const login = (email, password) => async (dispatch) => {
   const config = {
