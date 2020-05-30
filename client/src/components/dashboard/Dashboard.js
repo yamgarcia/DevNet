@@ -1,15 +1,30 @@
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import profile from "../../reducers/profile";
+import { getCurrentProfile } from "../../actions/profile";
+
 /**
- * Fetch data using an actions, bring it from the redux state, and pass it to other components (exp, edu)
+ * @description Fetch data using an actions, bring it from the redux state, and pass it to other components (exp, edu)
  * racfp
  */
+const Dashboard = ({ getCurrentProfile, auth, profile }) => {
+  useEffect(() => {
+    getCurrentProfile(); //can't use this if it's not called in the props above
+  }, []);
 
-import React from "react";
-import PropTypes from "prop-types";
-
-const Dashboard = (props) => {
-  return <div>Dashboard</div>;
+  return <>Dashboard</>;
 };
 
-Dashboard.propTypes = {};
+Dashboard.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired, //ptfr
+  auth: PropTypes.object.isRequired, //ptor
+  profile: PropTypes.object.isRequired, //ptor
+};
 
-export default Dashboard;
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
