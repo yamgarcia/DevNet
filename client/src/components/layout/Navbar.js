@@ -3,10 +3,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
-{
-  /* i.fas.fa-sing-out-alt */
-  //the span arround the text is to let just the icon to show in mobile devices
-}
+
+/* i.fas.fa-sing-out-alt */
+//the span arround the text is to let just the icon to show in mobile devices
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
