@@ -37,9 +37,9 @@ export const loadUser = () => async (dispatch) => {
 
 /**
  * @description register user
- * @param name compose the body
- * @param email compose the body
- * @param password compose the body
+ * @param {String} name compose the body
+ * @param {String} email compose the body
+ * @param {String} password compose the body
  */
 export const register = ({ name, email, password }) => async (dispatch) => {
   const config = {
@@ -72,8 +72,8 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 
 /**
  * @description Login user
- * @param email  compose the body
- * @param password  compose the body
+ * @param {String} email  compose the body
+ * @param {String} password compose the body
  */
 export const login = (email, password) => async (dispatch) => {
   const config = {
