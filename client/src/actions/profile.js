@@ -23,9 +23,9 @@ export const getCurrentProfile = () => async (dispatch) => {
 
 /**
  * @description Creates or update profile and redirect
- * @param formData to be submitted
- * @param history object that has the push object, when called it redirects to a client side route
- * @param edit false by deafult, if true it is meant to update
+ * @param {} formData to be submitted
+ * @param {} history object that has the push object, when called it redirects to a client side route
+ * @param {Boolean} edit false by deafult, if true it is meant to update
  */
 
 export const createProfile = (formData, history, edit = false) => async (
