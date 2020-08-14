@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import profile from "../../reducers/profile";
 import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
+import DashboardActions from "./DashboardActions";
 
 /**
  * @description Fetch data using an actions, bring it from the redux state, and pass it to other components (exp, edu)
@@ -28,7 +29,9 @@ const Dashboard = ({
         <i className='fas fa-user'></i> Welcome {user && user.name}{" "}
       </p>
       {profile !== null ? (
-        <> has </>
+        <>
+          <DashboardActions />
+        </>
       ) : (
         <>
           {" "}
