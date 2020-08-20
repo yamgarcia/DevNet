@@ -6,7 +6,7 @@ import Spinner from "../layout/Spinner";
 import DashboardActions from "./DashboardActions";
 import Experience from "./Experience";
 import Education from "./Education";
-import { getCurrentProfile } from "../../actions/profile";
+import { getCurrentProfile, deleteAccount } from "../../actions/profile";
 
 /**
  * @description Fetch data using an actions, bring it from the redux state, and pass it to other components (exp, edu)
@@ -14,6 +14,7 @@ import { getCurrentProfile } from "../../actions/profile";
  */
 const Dashboard = ({
   getCurrentProfile,
+  deleteAccount,
   auth: { user },
   profile: { profile, loading },
 }) => {
@@ -34,6 +35,17 @@ const Dashboard = ({
           <DashboardActions />
           <Experience experience={profile.experience} />
           <Education education={profile.education} />
+
+          <div className='my-2'>
+            <button
+              className='btn btn-danger'
+              onClick={() => {
+                deleteAccount();
+              }}
+            >
+              <i className='fas fa-user-minus'></i> Delete My Account
+            </button>
+          </div>
         </>
       ) : (
         <>
@@ -55,6 +67,7 @@ const Dashboard = ({
 
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired, //ptfr
+  deleteAccount: PropTypes.func.isRequired, //ptrf
   auth: PropTypes.object.isRequired, //ptor
   profile: PropTypes.object.isRequired, //ptor
 };
@@ -64,4 +77,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+  Dashboard
+);

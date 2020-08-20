@@ -6,6 +6,7 @@ const config = require("config");
 
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+const Post = require("../../models/Post");
 
 const { check, validationResult } = require("express-validator");
 
@@ -170,8 +171,8 @@ router.get("/user/:user_id", async (req, res) => {
 //private means that there is access to the token, but needs to add the auth
 router.delete("/", auth, async (req, res) => {
   try {
-    // @todo - remove user's posts
-
+    //remove user post
+    await Post.deleteMany({ user: req.user.id });
     //remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
     //remove user
