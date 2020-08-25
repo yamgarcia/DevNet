@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   token: localStorage.getItem("token"),
-  isAuthentiicated: null,
+  isAuthenticated: null,
   loading: true,
   user: null,
 };

@@ -19,12 +19,12 @@ const Dashboard = ({
   profile: { profile, loading },
 }) => {
   useEffect(() => {
-    getCurrentProfile(); //can't use this if it's not called in the props above
-  }, []);
+    getCurrentProfile(); //can't use this if it's not brought in the props above
+  }, [getCurrentProfile]);
 
   return (
     <>
-      {loading && profile === null ? <Spinner /> : <> test </>}
+      {loading && profile === null ? <Spinner /> : <> </>}
       <h1 className='large text-primary'> Dashboard </h1>
       <p className='lead'>
         {" "}
