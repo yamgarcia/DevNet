@@ -12,11 +12,13 @@ const Profile = ({
   match,
 }) => {
   useEffect(() => {
+    console.log(loading);
     getProfileById(match.params.id);
-  }, [getProfileById]);
+  }, [getProfileById, match.params.id]);
 
   return (
     <>
+      {console.log(profile)}
       {profile === null || loading ? (
         <Spinner />
       ) : (
@@ -24,7 +26,7 @@ const Profile = ({
           <Link to='/profiles' className='btn btn-light'>
             Back to Profiles
           </Link>
-          console.log([auth.user._id , profile.user._id])
+
           {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id && (

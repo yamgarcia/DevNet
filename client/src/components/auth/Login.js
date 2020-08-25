@@ -20,7 +20,6 @@ const Login = ({ login, isAuthenticated }) => {
     e.preventDefault();
 
     login(email, password);
-    console.log("success");
   };
 
   //If logged in it redirects
