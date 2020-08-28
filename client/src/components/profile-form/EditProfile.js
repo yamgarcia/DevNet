@@ -197,7 +197,6 @@ const EditProfile = ({
           </button>
           <span>Optional</span>
         </div>
-
         {displaySocialInputs && (
           <>
             <div className='form-group social-input'>
@@ -210,7 +209,6 @@ const EditProfile = ({
                 onChange={(e) => handleChange(e)}
               />
             </div>
-
             <div className='form-group social-input'>
               <i className='fab fa-facebook fa-2x'></i>
               <input
@@ -221,7 +219,6 @@ const EditProfile = ({
                 onChange={(e) => handleChange(e)}
               />
             </div>
-
             <div className='form-group social-input'>
               <i className='fab fa-youtube fa-2x'></i>
               <input
@@ -232,7 +229,6 @@ const EditProfile = ({
                 onChange={(e) => handleChange(e)}
               />
             </div>
-
             <div className='form-group social-input'>
               <i className='fab fa-linkedin fa-2x'></i>
               <input
@@ -243,7 +239,6 @@ const EditProfile = ({
                 onChange={(e) => handleChange(e)}
               />
             </div>
-
             <div className='form-group social-input'>
               <i className='fab fa-instagram fa-2x'></i>
               <input

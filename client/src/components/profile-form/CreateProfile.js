@@ -197,7 +197,6 @@ const CreateProfile = ({ createProfile, history }) => {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-
             <div className='form-group social-input'>
               <i className='fab fa-linkedin fa-2x'></i>
               <input
@@ -208,7 +207,6 @@ const CreateProfile = ({ createProfile, history }) => {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-
             <div className='form-group social-input'>
               <i className='fab fa-instagram fa-2x'></i>
               <input

@@ -28,7 +28,6 @@ const Profile = ({
           <Link to='/profiles' className='btn btn-light'>
             Back to Profiles
           </Link>
-
           {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id && (
