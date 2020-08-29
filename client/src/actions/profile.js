@@ -24,7 +24,11 @@ export const getCurrentProfile = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg:
+          err.response.statusText + " - GET_PROFILE error - getCurrentProfile",
+        status: err.response.status,
+      },
     });
   }
 };
@@ -73,8 +77,6 @@ export const getProfileById = (userId) => async (dispatch) => {
  * @description Gets GitHub repos
  */
 export const getGitHubRepos = (username) => async (dispatch) => {
-  dispatch({ type: CLEAR_PROFILE });
-
   try {
     const res = await axios.get(`/api/profile/github/${username}`);
 
@@ -85,7 +87,10 @@ export const getGitHubRepos = (username) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: { msg: err.response.statusText, status: err.response.status },
+      payload: {
+        msg: err.response.statusText + " - GET_REPOS error",
+        status: err.response.status,
+      },
     });
   }
 };
