@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
-/* i.fas.fa-sing-out-alt */
 //the span arround the text is to let just the icon to show in mobile devices
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
@@ -61,7 +60,6 @@ Navbar.propTypes = {
   auth: PropTypes.object.isRequired, //ptor
 };
 
-//? takes the data from the "store state" and select what connect needs then it may be destructured in the component's params
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
