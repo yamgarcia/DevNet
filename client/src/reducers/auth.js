@@ -9,6 +9,12 @@ import {
   ACCOUNT_DELETED,
 } from "../actions/types";
 
+/**
+ *  @name token from localStorage
+ *  @name isAuthenticated certifies that user is loged in
+ *  @name loading same as in auth reducer. True by default, changes to false once a request is made
+ *  @name error hold any error object in the request
+ */
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
