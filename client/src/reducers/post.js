@@ -26,6 +26,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         error: payload,
+        loading: false,
       };
     case UPDATE_LIKES:
       //! fix action POST_ERROR firing
