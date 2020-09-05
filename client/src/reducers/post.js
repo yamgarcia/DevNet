@@ -29,7 +29,6 @@ export default function (state = initialState, action) {
         loading: false,
       };
     case UPDATE_LIKES:
-      //! fix action POST_ERROR firing
       return {
         ...state,
         posts: state.posts.map((post) =>
