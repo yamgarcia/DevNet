@@ -2,6 +2,7 @@ import axios from "axios";
 import { setAlert } from "./alert";
 import {
   GET_POSTS,
+  GET_POST,
   POST_ERROR,
   UPDATE_LIKES,
   DELETE_POST,
@@ -13,7 +14,7 @@ import {
  */
 export const getPosts = () => async (dispatch) => {
   try {
-    const res = await axios.get("api/posts");
+    const res = await axios.get("/api/posts");
 
     dispatch({
       type: GET_POSTS,
@@ -130,6 +131,32 @@ export const addPost = (formData) => async (dispatch) => {
       type: POST_ERROR,
       payload: {
         msg: err.response.statusText + " - ADD_POST error - addPost",
+        status: err.response.status,
+      },
+    });
+  }
+};
+
+/**
+ * @description Get post
+ */
+export const getPost = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/posts/${id}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg:
+          err.response.statusText +
+          " - GET_POST error - getPost - " +
+          "Post Id: " +
+          id,
         status: err.response.status,
       },
     });

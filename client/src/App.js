@@ -15,6 +15,7 @@ import AddEducation from "./components/profile-form/AddEducation";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
+import Post from "./components/post/Post";
 import PrivateRoute from "./components/routing/PrivateRoute";
 
 import { loadUser } from "./actions/auth";
@@ -49,6 +50,7 @@ const App = () => {
               <Route path='/profile/:id' component={Profile} exact />
               <PrivateRoute path='/dashboard' component={Dashboard} exact />
               <PrivateRoute path='/posts' component={Posts} exact />
+              <PrivateRoute path='/posts/:id' component={Post} exact />
               <PrivateRoute
                 path='/create-profile'
                 component={CreateProfile}
