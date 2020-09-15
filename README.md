@@ -1,5 +1,5 @@
 <h4 align="center">
- <b>[DevNet](https://arcane-dawn-30816.herokuapp.com/)</b> 
+ <b><a href="https://arcane-dawn-30816.herokuapp.com/">DevNet<a></b> 
 </h4>
 <p align="center">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-red">
@@ -53,11 +53,11 @@ The project was packed of small details and use of APIs like [Gravatar](https://
 ![Mobile-home](/screenshots/1200x900mobiledetails.jpg?raw=true "Mobile App Home Page")
 ![Mobile-details](/screenshots/1200x900mobilehomepage.jpg?raw=true "Mobile App Deatils Page")
 ![Insomnia](/screenshots/1200x900Insomnia.jpg?raw=true "API") -->
-<div class="flex-container">
- <img src="/screenshots/home.jpg" width="450px;" alt="Web App Home Page"/>
- <img src="/screenshots/profile.jpg" width="450px;" alt="Web App profile Page"/>
- <img src="/screenshots/developers.jpg" width="450px;" alt="Web App developers Page"/>
- <img src="/screenshots/post.jpg" width="450px;" alt="Web App post Page"/>
+<div align="center">
+ <img src="/screenshots/home.jpg" width="600px;" alt="Web App Home Page"/>
+ <img src="/screenshots/profile.jpg" width="600px;" alt="Web App profile Page"/>
+ <img src="/screenshots/developers.jpg" width="600px;" alt="Web App developers Page"/>
+ <img src="/screenshots/post.jpg" width="600px;" alt="Web App post Page"/>
 </div>
 
 ---
