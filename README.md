@@ -30,7 +30,7 @@ The following project was made with
 
 ### :muscle: Project
 
-<b>DevNet</b> is a project from [Traversy Media](https://www.traversymedia.com/) that aims to connect Developer through a platform where they can publish, like, and comment on each other's posts, show off their GitHub projects, and build a network of developers. Access it through: https://arcane-dawn-30816.herokuapp.com/
+<b>DevNet</b> is a project from [Traversy Media](https://www.traversymedia.com/) that aims to connect Developers through a platform where they can publish, like, and comment on each other's posts, show off their GitHub projects, and build a network of developers. Access it through: https://arcane-dawn-30816.herokuapp.com/
 
 ### 🙋🏽‍♂️ Author's considerations
 
